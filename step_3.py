@@ -1,5 +1,13 @@
 from step_1 import transform_products_to_list
 
-
 def group_products_by_customer_and_invoice(products_string):
-    pass
+        products_list = transform_products_to_list(products_string)
+        customers = {}
+        for product in products_list:
+            customer_id = product[-2]
+            invoice_id = product[0]
+            customers.setdefault(customer_id,{})
+            customers[customer_id].setdefault(invoice_id,[])
+            customers[customer_id][invoice_id].append(product)
+    
+        return customers
